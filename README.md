@@ -1,4 +1,4 @@
-﻿# `webdriver-specflow example`
+﻿# `webdriver-specflow-example`
 
 Using Specflow BDD, Selenium and Webdriver in C# for user acceptance testing.
 
