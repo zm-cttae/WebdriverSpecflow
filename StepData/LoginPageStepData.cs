@@ -1,7 +1,6 @@
-﻿namespace WebdriverSpecflow.StepData
+﻿namespace WebdriverSpecflow.StepData;
+
+public static class LoginPageStepData
 {
-    public static class LoginPageStepData
-    {
-        public static string LoginUrlPath = "/signin";
-    }
+    public static string LoginUrlPath = "/signin";
 }

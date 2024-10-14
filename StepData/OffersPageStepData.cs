@@ -1,8 +1,6 @@
-﻿using System;
-namespace WebdriverSpecflow.StepData
+﻿namespace WebdriverSpecflow.StepData;
+
+public static class OffersPageStepData
 {
-    public static class OffersPageStepData
-    {
-        public static string OffersUrlPath = "/offers";
-    }
+    public static string OffersUrlPath = "/offers";
 }
