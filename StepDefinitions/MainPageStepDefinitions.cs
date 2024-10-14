@@ -1,8 +1,7 @@
-using NUnit.Framework;
 using WebdriverSpecflow.Pages;
 using WebdriverSpecflow.Hooks;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
+using WebdriverSpecflow.Utils;
+using WebdriverSpecflow.StepData;
 
 namespace WebdriverSpecflow.StepDefinitions
 {
@@ -11,32 +10,52 @@ namespace WebdriverSpecflow.StepDefinitions
     {
         private readonly IWebDriver _driver;
         private readonly MainPage _mainPage;
-        private readonly WebDriverWait _wait;
+        private readonly LoginActions _loginActions;
 
         public MainPageStepDefinitions()
         {
             _driver = ScenarioHook.ThreadLocalDriver.Value;
             _mainPage = new MainPage();
-            _wait = new WebDriverWait(_driver, new TimeSpan(0, 0, 5));
+            _loginActions = new LoginActions();
         }
 
-        [Given("I went to the mainpage")]
+        [Given("I went to the main page")]
         public void GivenIWentToTheMainPage()
         {
-            _driver.Navigate().GoToUrl("https://bstackdemo.com/");
+            _driver.Navigate().GoToUrl(MainPageStepData.MainUrl);
         }
 
-        [When("I click the signin link")]
-        public void WhenIClickSigninLink()
+        [Given("I am not logged in")]
+        public void GivenIAmNotLoggedIn()
         {
-            _mainPage.SignInLink.Click();
-            _wait.Until(ExpectedConditions.StalenessOf(_mainPage.SignInLink));
+            Assert.That(_mainPage.SignInLink.Displayed, Is.True);
         }
 
-        [Then("I am on the mainpage")]
+        [Given("I am logged in as demouser")]
+        public void GivenIAmLoggedInAsDemouser()
+        {
+            _loginActions.clickLoginLink();
+            _loginActions.enterDetails();
+            _loginActions.clickButton();
+        }
+
+        [When("I click the login link")]
+        public void WhenIClickLoginLink()
+        {
+            _loginActions.clickLoginLink();
+        }
+
+        [When("I click the Offers link")]
+        public void WhenIClickOffersLink()
+        {
+            _mainPage.OffersLink.Click();
+        }
+
+        [Then("I am on the main page")]
         public void ThenIAmOnTheMainPage()
         {
-            Assert.That(_driver.Url, Is.EqualTo("https://bstackdemo.com/?signin=true"));
+            Uri uri = new Uri(_driver.Url);
+            Assert.That(uri.AbsolutePath, Is.EqualTo("/"), _driver.Url);
         }
 
         [Then("Profile name should appear")]

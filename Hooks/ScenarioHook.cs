@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium.Chrome;
 
 namespace WebdriverSpecflow.Hooks
 {

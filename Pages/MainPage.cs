@@ -1,15 +1,9 @@
 ﻿namespace WebdriverSpecflow.Pages
 {
-    public class MainPage
+    public sealed class MainPage : BasePage
     {
-        private readonly IWebDriver _driver;
-
-        public MainPage()
-        {
-            _driver = Hooks.ScenarioHook.ThreadLocalDriver.Value;
-        }
-
         public IWebElement SignInLink => _driver.FindElement(By.LinkText("Sign In"));
+        public IWebElement OffersLink => _driver.FindElement(By.Id("offers"));
         public IWebElement ProfileName => _driver.FindElement(By.ClassName("username"));
     }
 }
