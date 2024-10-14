@@ -33,8 +33,9 @@ namespace WebdriverSpecflow.Utils
         }
         public void clickButton()
         {
-            _loginPage.LoginButton.Click();
-            _wait.Until(ExpectedConditions.StalenessOf(_loginPage.LoginButton));
+            var btn = _loginPage.LoginButton;
+            btn.Click();
+            _wait.Until(ExpectedConditions.StalenessOf(btn));
         }
     }
 }

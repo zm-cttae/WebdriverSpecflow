@@ -3,6 +3,7 @@ using WebdriverSpecflow.Pages;
 using WebdriverSpecflow.Hooks;
 using WebdriverSpecflow.Utils;
 using WebdriverSpecflow.StepData;
+using SeleniumExtras.WaitHelpers;
 
 namespace WebdriverSpecflow.StepDefinitions
 {
@@ -25,6 +26,7 @@ namespace WebdriverSpecflow.StepDefinitions
         [Then("I am on the login page")]
         public void ThenIAmOnTheLoginPage()
         {
+            Thread.Sleep(2000);
             Uri uri = new Uri(_driver.Url);
             Assert.That(uri.AbsolutePath, Is.EqualTo(LoginPageStepData.LoginUrlPath), _driver.Url);
         }

@@ -1,4 +1,7 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using OpenQA.Selenium.Chrome;
+using WebdriverSpecflow.Utils;
 
 namespace WebdriverSpecflow.Hooks
 {
@@ -10,7 +13,8 @@ namespace WebdriverSpecflow.Hooks
         [BeforeScenario]
         public void BeforeScenario()
         {
-            ThreadLocalDriver.Value = new ChromeDriver();
+            var browserType = Environment.GetEnvironmentVariable("BROWSER_TYPE");
+            ThreadLocalDriver.Value = WebDriverFactory.Create(browserType);
         }
 
         [AfterScenario]

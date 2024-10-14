@@ -55,7 +55,7 @@ namespace WebdriverSpecflow.StepDefinitions
         public void ThenIAmOnTheMainPage()
         {
             Uri uri = new Uri(_driver.Url);
-            Assert.That(uri.AbsolutePath, Is.EqualTo("/"), _driver.Url);
+            Assert.That(uri.AbsolutePath, Is.EqualTo(MainPageStepData.MainUrlPath), _driver.Url);
         }
 
         [Then("Profile name should appear")]
