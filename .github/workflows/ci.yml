@@ -14,5 +14,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build
-    - name: Test with the dotnet CLI
-      run: xvfb-run --server-args "-screen 0 1920x1080x24" dotnet test
+    - name: Test for Chrome with dotnet CLI
+      run: |
+       xvfb-run --server-args "-screen 0 1920x1080x24" dotnet test -- RunConfiguration.EnvironmentVariables.BROWSER_TYPE=Chrome
+       xvfb-run --server-args "-screen 0 1920x1080x24" dotnet test -- RunConfiguration.EnvironmentVariables.BROWSER_TYPE=Firefox
