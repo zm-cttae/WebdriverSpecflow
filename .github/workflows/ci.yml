@@ -15,6 +15,6 @@ jobs:
     - name: Build
       run: dotnet build
     - name: Test for Chrome with dotnet CLI
-      run: |
-       xvfb-run --server-args "-screen 0 1920x1080x24" dotnet test -- RunConfiguration.EnvironmentVariables.BROWSER_TYPE=Chrome
-       xvfb-run --server-args "-screen 0 1920x1080x24" dotnet test -- RunConfiguration.EnvironmentVariables.BROWSER_TYPE=Firefox
+      run: xvfb-run --server-args "-screen 0 1920x1080x24" dotnet test -- RunConfiguration.EnvironmentVariables.BROWSER_TYPE=Chrome
+    - name: Test for Firefox with dotnet CLI
+      run: xvfb-run --server-args "-screen 0 1920x1080x24" dotnet test -- RunConfiguration.EnvironmentVariables.BROWSER_TYPE=Firefox
